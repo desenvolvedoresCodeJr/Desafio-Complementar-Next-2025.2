@@ -27,10 +27,15 @@ body {
     background-color: #B54A22;
     color: white;
     padding: 0.75rem;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     font-size: medium;
+}
+
+.topo-chat .bi{
+    cursor: pointer;
 }
 
 .area-mensagens-chat {
@@ -66,5 +71,20 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+.botao-abrir-chat {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: #B54A22;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+    font-size:x-large;
 }
 

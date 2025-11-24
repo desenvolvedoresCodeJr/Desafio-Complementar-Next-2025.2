@@ -9,9 +9,9 @@ interface Message {
   sender: 'user' | 'bot';
 }
 
-const SESSION_STORAGE_KEY = 'df_session_id';
+const SESSION_STORAGE_KEY = 'df_session_id'; //chave usada para armazenar o ID da sessão no localStorage
 
-function ChatBot() : JSX.Element {
+function ChatBot() {
 
     const [sessionId] = useState(() => { //como o site não possui sistema de login, usamos o localStorage para armazenar um ID único para cada usuário
     let id = localStorage.getItem(SESSION_STORAGE_KEY);
@@ -25,6 +25,7 @@ function ChatBot() : JSX.Element {
     const [messages, setMessages] = useState<Message[]>([]); //estado para armazenar o histórico de mensagens
     const [inputMessage, setInputMessage] = useState(''); //estado para armazenar a mensagem que o usuário está digitando
     const [isLoading, setIsLoading] = useState(false); //estado para indicar se o bot está "digitando"
+    const [isChatOpen, setIsChatOpen] = useState(false); //estado para controlar se o chat está aberto ou fechado
 
     const sendMessage = async () => { //função para enviar a mensagem ao backend
         if (!inputMessage.trim() || isLoading) return; //verifica se a mensagem não está vazia e se o bot não está digitando, caso contrário, a mensagem não é enviada.
@@ -69,13 +70,14 @@ function ChatBot() : JSX.Element {
     }; //bloco só para enviar a mensagem se pressionar enter
 
     return (
+        <>
+        {isChatOpen ? (
         // <div className="fixed bottom-5 right-5 w-80 h-[500px] bg-white border-solid border-2 border-[#B54A22] rounded-lg shadow-xl flex flex-col z-50 p-5">
         <div className='caixa-chat'>
-        
-        <div className='topo-chat'>
-            <span>Chat - Consultório Psicode</span>
-        </div>
-
+            <div className='topo-chat'>
+                <span>Chat - Consultório Psicode</span>
+                <i className="bi bi-x-lg" onClick={() => setIsChatOpen(false)}></i>
+            </div>
             {/* ÁREA DE MENSAGENS */}
             {/* <div className="flex-1 p-5 overflow-y-auto space-y-3"> */}
             <div className="area-mensagens-chat">
@@ -124,6 +126,12 @@ function ChatBot() : JSX.Element {
                 </button>
             </div>
         </div>
+        ) : (
+        <button onClick={() => setIsChatOpen(true)} className='botao-abrir-chat'>
+           <i className="bi bi-chat"></i>
+        </button>
+        )   }
+    </>
     );
 }
 

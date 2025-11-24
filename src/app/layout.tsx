@@ -3,6 +3,7 @@ import { Nunito, Zain } from "next/font/google";
 import "./globals.css";
 import ChatBot from "./chatBotComp/chatBot";
 import ChatBotWrapper from "./chatBotComp/chatBotWrapper";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const nunito = Nunito({
   variable: "--font-nunito",
