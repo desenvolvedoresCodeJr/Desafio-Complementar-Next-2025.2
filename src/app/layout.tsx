@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito, Zain } from "next/font/google";
 import "./globals.css";
-
+import ChatBot from "./chatBotComp/chatBot";
+import ChatBotWrapper from "./chatBotComp/chatBotWrapper";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${nunito.variable} ${zain.variable} antialiased`}
       >
         {children}
+        <ChatBotWrapper />
       </body>
     </html>
   );
